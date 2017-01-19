@@ -6,10 +6,9 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-public class Radio_Principañ {
+public class Radio_Principal {
 
 	private JFrame frmPrincipal;
 
@@ -20,7 +19,7 @@ public class Radio_Principañ {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Radio_Principañ window = new Radio_Principañ();
+					Radio_Principal window = new Radio_Principal();
 					window.frmPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +31,7 @@ public class Radio_Principañ {
 	/**
 	 * Create the application.
 	 */
-	public Radio_Principañ() {
+	public Radio_Principal() {
 		initialize();
 	}
 
