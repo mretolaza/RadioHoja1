@@ -11,7 +11,7 @@
 public class MemoryBoton{
 
     String frecuency;
-    String station; 
+    String station;
     
     public MemoryBoton (String frecuency, String station)
     {
