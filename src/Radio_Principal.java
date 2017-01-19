@@ -2,15 +2,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Radio_Principal {
 
 	private JFrame frmPrincipal;
+	private JSlider slider;
+	private JLabel lb_emision;
+	private JRadioButton radFM;
+	private JRadioButton radAM;
+	private ButtonGroup grupo1 = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -50,7 +61,7 @@ public class Radio_Principal {
 		frmPrincipal.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lb_emision = new JLabel("-");
+		lb_emision = new JLabel("-");
 		lb_emision.setFont(new Font("Berlin Sans FB", Font.PLAIN, 30));
 		lb_emision.setBounds(193, 43, 219, 53);
 		panel.add(lb_emision);
@@ -60,16 +71,21 @@ public class Radio_Principal {
 		lb_AmFm.setBounds(10, 0, 119, 132);
 		panel.add(lb_AmFm);
 		
-		JRadioButton radFM = new JRadioButton("   FM");
+		radFM = new JRadioButton("   FM");
+		grupo1.add(radFM);
+		radFM.setSelected(true);
 		radFM.setForeground(new Color(0, 0, 255));
 		radFM.setFont(new Font("Microsoft YaHei", Font.BOLD, 11));
 		radFM.setBounds(19, 73, 62, 23);
+		radFM.addActionListener(new Listener());
 		frmPrincipal.getContentPane().add(radFM);
 		
-		JRadioButton radAM = new JRadioButton("  AM");
+		radAM = new JRadioButton("  AM");
+		grupo1.add(radAM);
 		radAM.setForeground(new Color(0, 0, 255));
 		radAM.setFont(new Font("Microsoft YaHei", Font.BOLD, 11));
 		radAM.setBounds(19, 105, 62, 23);
+		radAM.addActionListener(new Listener());
 		frmPrincipal.getContentPane().add(radAM);
 		
 		JButton but1 = new JButton("1");
@@ -143,9 +159,48 @@ public class Radio_Principal {
 		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		btnNewButton.setBounds(620, 314, 108, 40);
 		frmPrincipal.getContentPane().add(btnNewButton);
+		
+		slider = new JSlider();
+		slider.setValue(0);
+		slider.setMaximum(1079);
+		slider.setMinimum(789);
+		slider.setBounds(238, 265, 200, 50);
+		slider.addChangeListener(new ChangeListener(){
+			 @Override
+			 
+				public void stateChanged(ChangeEvent e) {
+					// TODO Auto-generated method stub
+				 if (radFM.isSelected()){
+					 lb_emision.setText(""+(float)((float)slider.getValue()/(float)10));
+				 }	else if (radAM.isSelected()) {
+					 lb_emision.setText(""+slider.getValue()*10);
+				 }
+				}
+		});
+		frmPrincipal.getContentPane().add(slider);
 		frmPrincipal.setTitle("Principal");
 		frmPrincipal.setFont(new Font("Californian FB", Font.PLAIN, 22));
 		frmPrincipal.setBounds(100, 100, 780, 404);
 		frmPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	class Listener implements ActionListener{
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			 if (e.getSource() == radFM) {
+				slider.setMaximum(1079);
+				slider.setMinimum(789);
+				slider.setValue(slider.getMinimum());
+			 }
+			 if (e.getSource() == radAM){
+				slider.setMaximum(161);
+				slider.setMinimum(53);
+				slider.setValue(slider.getMinimum());
+			 }
+		}
+	}
+	
+	
 }
+
