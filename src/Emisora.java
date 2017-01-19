@@ -1,4 +1,8 @@
 
+//Javier Ramos , 16230
+//María Mercedes Retolaza , 16339 
+//Diego Fernandez, 16344 
+
 public class Emisora {
 	//Atributos
 	private String nombre; 
@@ -36,8 +40,4 @@ public class Emisora {
 		this.nEstacion = nEstacion;
 	} 
 	
-	
-	
-	
-
 }
