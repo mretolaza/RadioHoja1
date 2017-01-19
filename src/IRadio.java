@@ -14,19 +14,6 @@ public interface IRadio {
 	public String ToString(); 
 	public boolean limite(float emisora); 
 	
-	
-	
-	
-	public default float[] setEmisora(float[] emisoras, int index, float emisora){
-		emisoras[index] = emisora;
-		return emisoras;
-	}
-	
-	public default float getEmisora(float[] emisoras, int index){
-		float emisora = emisoras[index];
-		return emisora;
-		
-	}
 
 }
 
