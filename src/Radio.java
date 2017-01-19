@@ -89,11 +89,11 @@ public class Radio implements IRadio {
 	public boolean limite(float emisora) {
 		boolean flag = false;
 		if (frecuency.equals("AM")) {
-			if (Integer.parseInt(station) > 161){
+			if (Integer.parseInt(station)*10 > 1610){
 				flag = true;
 			}
 		} else if (frecuency.equals("FM")){
-			if (Integer.parseInt(station) > 1079){
+			if (Float.parseFloat(station)/(float)10 > 107.9){
 				flag = true;
 			}
 		}
