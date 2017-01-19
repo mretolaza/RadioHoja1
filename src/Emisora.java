@@ -1,9 +1,16 @@
 
+//Javier Ramos , 16230
+//María Mercedes Retolaza , 16339 
+//Diego Fernandez, 16344 
+
 public class Emisora {
 	//Atributos
+	
 	private String nombre; 
-	private boolean FMaAM; 
+	private boolean FMaAM;
+	private boolean IsOn; 
 	private float   nEstacion;
+	private String  frecuencia; 
 	
 	//Constructor 
 	public Emisora() {
@@ -34,10 +41,20 @@ public class Emisora {
 
 	public void setnEstacion(float nEstacion) {
 		this.nEstacion = nEstacion;
-	} 
+	}
 	
+	//public void CambiarFrecuencia(){
+		
+		//if (frecuencia == "AM")
+			//frecuencia = "FM"
+			//else 
+				//frecuencia ="AM"
+		
+	//}
 	
-	
-	
+	//public void limite () { 
+		//if (frecuencia=="AM")
+		
+			
+	}
 
-}
