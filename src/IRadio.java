@@ -12,24 +12,10 @@ public interface IRadio {
 	public void atras(); 
 	public void SetMemory(int Posicion); 
 	public String ToString(); 
+	public boolean limite(float emisora); 
 	
-	public default boolean status (boolean on){
-		on = !on;
-		return on;
-	}
 	
-	public default boolean frecuencia (boolean f){
-		f = !f;
-		return f;
-	}
 	
-	public default boolean limite (float emisora){
-		boolean flag = true;
-		if (emisora <= 107.9){
-			flag = false;
-		}
-		return flag;
-	}
 	
 	public default float[] setEmisora(float[] emisoras, int index, float emisora){
 		emisoras[index] = emisora;
