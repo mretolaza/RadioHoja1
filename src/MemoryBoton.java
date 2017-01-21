@@ -1,17 +1,15 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hoja de trabajo no.1 - Simulador de Radio 
+ * María Mercedes Retolaza, 16339 
+ 
+ 
  */
 
-/**
- *
- * @author OscarIvan
- */
-public class MemoryBoton{
+public class MemoryBoton implements iBoton{
 
     String frecuency;
-    String station;
+    String station; 
     
     public MemoryBoton (String frecuency, String station)
     {
@@ -26,5 +24,11 @@ public class MemoryBoton{
         this.frecuency = frecuency;
         this.station = station;
     }
+    
+	@Override
+	public void Hold() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

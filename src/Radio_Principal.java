@@ -1,3 +1,6 @@
+
+//María Mercedes Retolaza 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,6 +25,26 @@ public class Radio_Principal {
 	private JRadioButton radFM;
 	private JRadioButton radAM;
 	private ButtonGroup grupo1 = new ButtonGroup();
+	private JButton     OnOFF; 
+	Radio rad = new Radio(); 
+	private JButton but1; 
+	private JButton but2; 
+	private JButton but3; 
+	private JButton but4; 
+	private JButton but5; 
+	private JButton but6; 
+	private JButton but7; 
+	private JButton but8; 
+	private JButton but9; 
+	private JButton but10; 
+	private JButton but11; 
+	private JButton but12; 
+	private JLabel  lb_AmFm; 
+	private String frecuencia; 
+	private String estacion; 
+	MemoryBoton memoria = new MemoryBoton(frecuencia, estacion);
+	
+	
 
 	/**
 	 * Launch the application.
@@ -44,6 +67,7 @@ public class Radio_Principal {
 	 */
 	public Radio_Principal() {
 		initialize();
+		
 	}
 
 	/**
@@ -51,22 +75,24 @@ public class Radio_Principal {
 	 */
 	private void initialize() {
 		frmPrincipal = new JFrame();
+		frmPrincipal.setForeground(Color.WHITE);
 		frmPrincipal.getContentPane().setBackground(new Color(25, 25, 112));
 		frmPrincipal.getContentPane().setLayout(null);
-		
+		//delcaracion del radio 
+		Radio  rad = new Radio(); 
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		panel.setBackground(new Color(245, 245, 220));
-		panel.setBounds(94, 51, 614, 132);
+		panel.setBounds(87, 51, 645, 132);
 		frmPrincipal.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		lb_emision = new JLabel("-");
-		lb_emision.setFont(new Font("Berlin Sans FB", Font.PLAIN, 30));
-		lb_emision.setBounds(193, 43, 219, 53);
+		lb_emision = new JLabel("");
+		lb_emision.setFont(new Font("Berlin Sans FB", Font.PLAIN, 35));
+		lb_emision.setBounds(288, 38, 138, 53);
 		panel.add(lb_emision);
 		
-		JLabel lb_AmFm = new JLabel("*");
+		JLabel lb_AmFm = new JLabel("");
 		lb_AmFm.setFont(new Font("Berlin Sans FB", Font.PLAIN, 30));
 		lb_AmFm.setBounds(10, 0, 119, 132);
 		panel.add(lb_AmFm);
@@ -79,6 +105,7 @@ public class Radio_Principal {
 		radFM.setBounds(19, 73, 62, 23);
 		radFM.addActionListener(new Listener());
 		frmPrincipal.getContentPane().add(radFM);
+	
 		
 		radAM = new JRadioButton("  AM");
 		grupo1.add(radAM);
@@ -88,7 +115,20 @@ public class Radio_Principal {
 		radAM.addActionListener(new Listener());
 		frmPrincipal.getContentPane().add(radAM);
 		
+		
 		JButton but1 = new JButton("1");
+		but1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Estoy aqui");
+				  
+				 {
+					
+				    System.out.println("Hola");
+					
+				}
+			}	
+			
+		});
 		but1.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but1.setBounds(84, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but1);
@@ -148,23 +188,59 @@ public class Radio_Principal {
 		but12.setBounds(678, 195, 50, 48);
 		frmPrincipal.getContentPane().add(but12);
 		
-		JRadioButton RadSave = new JRadioButton(" Save");
-		RadSave.setForeground(Color.BLUE);
-		RadSave.setFont(new Font("Microsoft YaHei", Font.BOLD, 11));
-		RadSave.setBounds(19, 136, 62, 23);
-		frmPrincipal.getContentPane().add(RadSave);
-		
-		JButton btnNewButton = new JButton("ON/OFF");
-		btnNewButton.setBackground(new Color(224, 255, 255));
-		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		btnNewButton.setBounds(620, 314, 108, 40);
-		frmPrincipal.getContentPane().add(btnNewButton);
+		JButton OnOFF = new JButton("ON/OFF");
+		OnOFF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (e.getSource() == OnOFF) {
+					 if (rad.isOn == false) {
+					     rad.isOn= true; 
+					     but1.setEnabled(false); 
+					     but2.setEnabled(false); 
+					     but3.setEnabled(false); 
+					     but4.setEnabled(false); 
+					     but5.setEnabled(false); 
+					     but6.setEnabled(false); 
+					     but7.setEnabled(false); 
+					     but8.setEnabled(false); 
+					     but9.setEnabled(false); 
+					     but10.setEnabled(false); 
+					     but11.setEnabled(false); 
+					     but12.setEnabled(false); 
+					     
+					     
+					 } else 
+						 
+						 if (rad.isOn==true) {
+							 rad.isOn= false;
+					 
+							 but1.setEnabled(true); 
+						     but2.setEnabled(true); 
+						     but3.setEnabled(true); 
+						     but4.setEnabled(true); 
+						     but5.setEnabled(true); 
+						     but6.setEnabled(true); 
+						     but7.setEnabled(true); 
+						     but8.setEnabled(true); 
+						     but9.setEnabled(true); 
+						     but10.setEnabled(true); 
+						     but11.setEnabled(true); 
+						     but12.setEnabled(true); 
+						 }
+				 }
+			}
+		});  
+		OnOFF.setBackground(new Color(224, 255, 255));
+		OnOFF.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		OnOFF.setBounds(666, 265, 88, 89);
+		frmPrincipal.getContentPane().add(OnOFF);
 		
 		slider = new JSlider();
+		slider.setForeground(Color.CYAN);
 		slider.setValue(0);
 		slider.setMaximum(1079);
 		slider.setMinimum(789);
-		slider.setBounds(238, 265, 200, 50);
+		slider.setBounds(250, 254, 255, 50);
 		slider.addChangeListener(new ChangeListener(){
 			 @Override
 			 
@@ -172,8 +248,11 @@ public class Radio_Principal {
 					// TODO Auto-generated method stub
 				 if (radFM.isSelected()){
 					 lb_emision.setText(""+(float)((float)slider.getValue()/(float)10));
+					 lb_AmFm.setText("FM");
+					 
 				 }	else if (radAM.isSelected()) {
 					 lb_emision.setText(""+slider.getValue()*10);
+					 lb_AmFm.setText("AM");
 				 }
 				}
 		});
@@ -187,20 +266,25 @@ public class Radio_Principal {
 	class Listener implements ActionListener{
 		
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) { 
+		
+			
 			 if (e.getSource() == radFM) {
 				slider.setMaximum(1079);
 				slider.setMinimum(789);
 				slider.setValue(slider.getMinimum());
+				
 			 }
 			 if (e.getSource() == radAM){
 				slider.setMaximum(161);
 				slider.setMinimum(53);
 				slider.setValue(slider.getMinimum());
 			 }
+			 
 		}
 	}
-	
-	
 }
+			 
+			 
+
 
