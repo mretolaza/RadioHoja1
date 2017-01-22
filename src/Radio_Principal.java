@@ -17,6 +17,8 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.sun.glass.ui.Timer;
+
 public class Radio_Principal {
 
 	private JFrame frmPrincipal;
@@ -89,7 +91,7 @@ public class Radio_Principal {
 		
 		lb_emision = new JLabel("");
 		lb_emision.setFont(new Font("Berlin Sans FB", Font.PLAIN, 35));
-		lb_emision.setBounds(288, 38, 138, 53);
+		lb_emision.setBounds(288, 38, 229, 53);
 		panel.add(lb_emision);
 		
 		JLabel lb_AmFm = new JLabel("");
@@ -117,18 +119,35 @@ public class Radio_Principal {
 		
 		
 		JButton but1 = new JButton("1");
+		 int timerDelay = 3000;
+		 //final Timer timer = new Timer(timerDelay , new ActionListener() 
 		but1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Estoy aqui");
-				  
-				 {
-					
-				    System.out.println("Hola");
-					
-				}
-			}	
-			
-		});
+			   /*{
+				   @Override
+				      public void actionPerformed(ActionEvent e) {
+				         frecuencia = "TAL FRECUENCIA";
+				         estacion = "NOMBRE ESTACION";
+				      }
+				   });
+				   but1 = new JButton("Press Me!"); /*ESTE ES EL QUE TENES QUE CAMBIAR LA REFERENCIA A BUT2 BUT3 Y ASÍ*/
+				  /* final ButtonModel bModel = button.getModel();
+				   bModel.addChangeListener(new ChangeListener() {
+				      @Override
+				      public void stateChanged(ChangeEvent cEvt) {
+				         if (bModel.isPressed() && !timer.isRunning()) {
+				            timer.start();
+				         } else if (!bModel.isPressed() && timer.isRunning()) {
+				            timer.stop();
+				            if (timer.getDelay() >= timerDelay)
+				               rad.Memorias[/*POSICION DEL BOTON O ESTACION ] = new MemoryBoton(frecuencia,estacion);
+				         } */
+				      }
+				   });
+				                          
+				//frecuencia = rad.Memorias["POSICION DEL BOTON QUE ES LA MISMA QUE LA DE ABAJO"].getFrecuencia
+				//estacion = rad.Memorias["POSICION DLE BOTON QUE ES LA MISMA QUE LA DE ABAJO"].getEstaion
+
 		but1.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but1.setBounds(84, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but1);
@@ -207,7 +226,7 @@ public class Radio_Principal {
 					     but10.setEnabled(false); 
 					     but11.setEnabled(false); 
 					     but12.setEnabled(false); 
-					     
+					     lb_emision.setText("Apagado");
 					     
 					 } else 
 						 
@@ -226,6 +245,7 @@ public class Radio_Principal {
 						     but10.setEnabled(true); 
 						     but11.setEnabled(true); 
 						     but12.setEnabled(true); 
+						     lb_emision.setText("Bienvenido");
 						 }
 				 }
 			}
