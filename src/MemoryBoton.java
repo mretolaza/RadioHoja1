@@ -1,8 +1,9 @@
 
 /*
  * Hoja de trabajo no.1 - Simulador de Radio 
- * María Mercedes Retolaza, 16339 
- 
+ * Javier Ramos, 16339 
+ * Marï¿½a Mercedes Retolaza, 16339 
+ * Diego Fernandez, 16344 
  
  */
 
@@ -23,6 +24,14 @@ public class MemoryBoton implements iBoton{
     public void Hold(String frecuency, String station) {
         this.frecuency = frecuency;
         this.station = station;
+    }
+    
+    public String getFrecuency(){
+    	return frecuency;
+    }
+    
+    public String getStation(){
+    	return station;
     }
     
 	@Override

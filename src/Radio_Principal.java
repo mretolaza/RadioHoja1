@@ -1,23 +1,30 @@
 
-//María Mercedes Retolaza 
-
+/*
+ * Hoja de trabajo no.1 - Simulador de Radio 
+ * Javier Ramos, 16339 
+ * Marï¿½a Mercedes Retolaza, 16339 
+ * Diego Fernandez, 16344 
+ 
+ */
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.event.*;
 
 import com.sun.glass.ui.Timer;
+import javax.swing.JCheckBox;
 
 public class Radio_Principal {
 
@@ -28,7 +35,7 @@ public class Radio_Principal {
 	private JRadioButton radAM;
 	private ButtonGroup grupo1 = new ButtonGroup();
 	private JButton     OnOFF; 
-	Radio rad = new Radio(); 
+	private Radio rad = new Radio(); 
 	private JButton but1; 
 	private JButton but2; 
 	private JButton but3; 
@@ -44,7 +51,8 @@ public class Radio_Principal {
 	private JLabel  lb_AmFm; 
 	private String frecuencia; 
 	private String estacion; 
-	MemoryBoton memoria = new MemoryBoton(frecuencia, estacion);
+	private JCheckBox chkSave;
+	private MemoryBoton[] memoria = new MemoryBoton[12];
 	
 	
 
@@ -69,7 +77,6 @@ public class Radio_Principal {
 	 */
 	public Radio_Principal() {
 		initialize();
-		
 	}
 
 	/**
@@ -118,91 +125,74 @@ public class Radio_Principal {
 		frmPrincipal.getContentPane().add(radAM);
 		
 		
-		JButton but1 = new JButton("1");
-		 int timerDelay = 3000;
-		 //final Timer timer = new Timer(timerDelay , new ActionListener() 
-		but1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			   /*{
-				   @Override
-				      public void actionPerformed(ActionEvent e) {
-				         frecuencia = "TAL FRECUENCIA";
-				         estacion = "NOMBRE ESTACION";
-				      }
-				   });
-				   but1 = new JButton("Press Me!"); /*ESTE ES EL QUE TENES QUE CAMBIAR LA REFERENCIA A BUT2 BUT3 Y ASÍ*/
-				  /* final ButtonModel bModel = button.getModel();
-				   bModel.addChangeListener(new ChangeListener() {
-				      @Override
-				      public void stateChanged(ChangeEvent cEvt) {
-				         if (bModel.isPressed() && !timer.isRunning()) {
-				            timer.start();
-				         } else if (!bModel.isPressed() && timer.isRunning()) {
-				            timer.stop();
-				            if (timer.getDelay() >= timerDelay)
-				               rad.Memorias[/*POSICION DEL BOTON O ESTACION ] = new MemoryBoton(frecuencia,estacion);
-				         } */
-				      }
-				   });
-				                          
-				//frecuencia = rad.Memorias["POSICION DEL BOTON QUE ES LA MISMA QUE LA DE ABAJO"].getFrecuencia
-				//estacion = rad.Memorias["POSICION DLE BOTON QUE ES LA MISMA QUE LA DE ABAJO"].getEstaion
-
+		but1 = new JButton("1");
+		but1.addActionListener(new Listener());
 		but1.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but1.setBounds(84, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but1);
 		
-		JButton but2 = new JButton("2");
+		but2 = new JButton("2");
+		but2.addActionListener(new Listener());
 		but2.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but2.setBounds(134, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but2);
 		
-		JButton but3 = new JButton("3");
+		but3 = new JButton("3");
+		but3.addActionListener(new Listener());
 		but3.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but3.setBounds(187, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but3);
 		
-		JButton but4 = new JButton("4");
+		but4 = new JButton("4");
+		but4.addActionListener(new Listener());
 		but4.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but4.setBounds(240, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but4);
 		
-		JButton but5 = new JButton("5");
+		but5 = new JButton("5");
+		but5.addActionListener(new Listener());
 		but5.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but5.setBounds(293, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but5);
 		
-		JButton but6 = new JButton("6");
+		but6 = new JButton("6");
+		but6.addActionListener(new Listener());
 		but6.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but6.setBounds(346, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but6);
 		
-		JButton but7 = new JButton("7");
+		but7 = new JButton("7");
+		but7.addActionListener(new Listener());
 		but7.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but7.setBounds(399, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but7);
 		
-		JButton but8 = new JButton("8");
+		but8 = new JButton("8");
+		but8.addActionListener(new Listener());
 		but8.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but8.setBounds(452, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but8);
 		
-		JButton but9 = new JButton("9");
+		but9 = new JButton("9");
+		but9.addActionListener(new Listener());
 		but9.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but9.setBounds(505, 195, 43, 48);
 		frmPrincipal.getContentPane().add(but9);
 		
-		JButton but10 = new JButton("10");
+		but10 = new JButton("10");
+		but10.addActionListener(new Listener());
 		but10.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but10.setBounds(558, 195, 50, 48);
 		frmPrincipal.getContentPane().add(but10);
 		
-		JButton but11 = new JButton("11");
+		but11 = new JButton("11");
+		but11.addActionListener(new Listener());
 		but11.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but11.setBounds(618, 195, 50, 48);
 		frmPrincipal.getContentPane().add(but11);
 		
-		JButton but12 = new JButton("12");
+		but12 = new JButton("12");
+		but12.addActionListener(new Listener());
 		but12.setFont(new Font("Verdana", Font.PLAIN, 11));
 		but12.setBounds(678, 195, 50, 48);
 		frmPrincipal.getContentPane().add(but12);
@@ -277,6 +267,10 @@ public class Radio_Principal {
 				}
 		});
 		frmPrincipal.getContentPane().add(slider);
+		
+		chkSave = new JCheckBox("Save");
+		chkSave.setBounds(8, 208, 62, 23);
+		frmPrincipal.getContentPane().add(chkSave);
 		frmPrincipal.setTitle("Principal");
 		frmPrincipal.setFont(new Font("Californian FB", Font.PLAIN, 22));
 		frmPrincipal.setBounds(100, 100, 780, 404);
@@ -284,11 +278,10 @@ public class Radio_Principal {
 	}
 	
 	class Listener implements ActionListener{
-		
+		private int i = 0;
 		@Override
 		public void actionPerformed(ActionEvent e) { 
-		
-			
+			i = 0;
 			 if (e.getSource() == radFM) {
 				slider.setMaximum(1079);
 				slider.setMinimum(789);
@@ -301,7 +294,324 @@ public class Radio_Principal {
 				slider.setValue(slider.getMinimum());
 			 }
 			 
+			 if (e.getSource() == but1){
+				 i = 1;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but2){
+				 i = 2;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but3){
+				 i = 3;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but4){
+				 i = 4;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but5){
+				 i = 5;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 
+			 if (e.getSource() == but6){
+				 i = 6;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but7){
+				 i = 7;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but8){
+				 i = 1;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 
+			 if (e.getSource() == but9){
+				 i = 9;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but10){
+				 i = 10;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but11){
+				 i = 11;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 if (e.getSource() == but12){
+				 i = 12;
+				 if (chkSave.isSelected() && memoria[i] == null){
+					 if (radFM.isSelected()){
+						 memoria[i] = new MemoryBoton("FM" , lb_emision.getText());
+					 } else {
+						 memoria[i] = new MemoryBoton("AM" , lb_emision.getText());
+					 }
+				 } else {
+					if (memoria[i].getFrecuency().equals("FM") && memoria[i] != null){
+						radFM.setSelected(true);
+						slider.setMaximum(1079);
+						slider.setMinimum(789);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value*10));
+					} else if (memoria[i].getFrecuency().equals("AM") && memoria[i] != null) {
+						radAM.setSelected(true);
+						slider.setMaximum(1610);
+						slider.setMinimum(530);
+						double value = Double.parseDouble(memoria[i].getStation());
+						slider.setValue((int)(value/10));
+					}
+				 }
+				 
+			 }
+			 
+			 
 		}
+		
+		
 	}
 }
 			 
