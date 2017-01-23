@@ -2,7 +2,7 @@
 /*
  * Hoja de trabajo no.1 - Simulador de Radio 
  * Javier Ramos, 16339 
- * Mar�a Mercedes Retolaza, 16339 
+ * Maria Mercedes Retolaza, 16339 
  * Diego Fernandez, 16344 
  
  */

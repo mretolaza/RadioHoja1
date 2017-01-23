@@ -41,10 +41,14 @@ public class Radio implements IRadio {
 
     @Override
     public void changeFrecuency() {        
-        if (frecuency == "AM")
-            frecuency = "FM";
-        else
-            frecuency = "AM";
+        if (frecuency == "AM"){
+        	frecuency = "FM";
+        	station = "87.9";
+        }	
+        else{
+        	frecuency = "AM";
+        	station = "530";
+        }
     }
 
     @Override
